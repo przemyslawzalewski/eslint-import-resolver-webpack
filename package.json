@@ -1,98 +1,65 @@
 {
-  "name": "eslint-plugin-import",
-  "version": "2.16.0",
-  "description": "Import with sanity.",
-  "engines": {
-    "node": ">=4"
-  },
-  "main": "lib/index.js",
-  "directories": {
-    "test": "tests"
+  "name": "eslint-import-resolver-webpack",
+  "version": "0.11.1",
+  "description": "Resolve paths to dependencies, given a webpack.config.js. Plugin for eslint-plugin-import.",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc mocha -t 5s",
+    "report": "nyc report --reporter=html",
+    "coveralls": "nyc report --reporter lcovonly && cd ../.. && coveralls < ./resolvers/webpack/coverage/lcov.info",
+    "update": "ncu --packageFile ./package.json --packageFileDir --upgradeAll",
+    "update:check": "ncu --packageFile ./package.json --packageFileDir"
   },
   "files": [
-    "lib",
-    "config",
-    "memo-parser"
+    "index.js",
+    "config.js"
   ],
-  "scripts": {
-    "watch": "cross-env NODE_PATH=./src mocha --watch --compilers js:babel-register --recursive tests/src",
-    "pretest": "linklocal",
-    "posttest": "eslint ./src",
-    "test": "cross-env BABEL_ENV=test NODE_PATH=./src nyc -s mocha -R dot --recursive tests/src -t 5s",
-    "test-compiled": "npm run prepublish && NODE_PATH=./lib mocha --compilers js:babel-register --recursive tests/src",
-    "test-all": "npm test && for resolver in ./resolvers/*; do cd $resolver && npm test && cd ../..; done",
-    "prepublish": "gulp prepublish",
-    "coveralls": "nyc report --reporter lcovonly && cat ./coverage/lcov.info | coveralls"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/benmosher/eslint-plugin-import"
+    "url": "git+https://github.com/przemyslawzalewski/eslint-import-resolver-webpack.git"
   },
   "keywords": [
+    "eslint-plugin-import",
     "eslint",
-    "eslintplugin",
-    "es6",
     "jsnext",
     "modules",
-    "import",
-    "export"
+    "webpack"
   ],
-  "author": "Ben Mosher <me@benmosher.com>",
+  "author": "Ben Mosher (me@benmosher.com)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/benmosher/eslint-plugin-import/issues"
   },
-  "homepage": "https://github.com/benmosher/eslint-plugin-import",
-  "devDependencies": {
-    "babel-eslint": "^8.2.6",
-    "babel-plugin-istanbul": "^4.1.6",
-    "babel-preset-es2015-argon": "latest",
-    "babel-register": "^6.26.0",
-    "babylon": "^6.15.0",
-    "chai": "^3.5.0",
-    "coveralls": "^3.0.2",
-    "cross-env": "^4.0.0",
-    "eslint": "2.x - 5.x",
-    "eslint-import-resolver-node": "file:./resolvers/node",
-    "eslint-import-resolver-typescript": "^1.0.2",
-    "eslint-import-resolver-webpack": "file:./resolvers/webpack",
-    "eslint-module-utils": "file:./utils",
-    "eslint-plugin-import": "2.x",
-    "gulp": "^3.9.1",
-    "gulp-babel": "6.1.2",
-    "linklocal": "^2.8.2",
-    "mocha": "^3.5.3",
-    "nyc": "^11.9.0",
-    "redux": "^3.7.2",
-    "rimraf": "^2.6.3",
-    "sinon": "^2.4.1",
-    "typescript": "^3.2.2",
-    "typescript-eslint-parser": "^21.0.2"
+  "homepage": "https://github.com/benmosher/eslint-plugin-import/tree/master/resolvers/webpack",
+  "dependencies": {
+    "array-find": "1.0.0",
+    "debug": "4.1.1",
+    "enhanced-resolve": "4.1.0",
+    "find-root": "1.1.0",
+    "has": "1.0.3",
+    "interpret": "1.2.0",
+    "lodash": "4.17.11",
+    "node-libs-browser": "2.2.0",
+    "resolve": "1.10.0",
+    "semver": "5.6.0"
   },
   "peerDependencies": {
-    "eslint": "2.x - 5.x"
+    "eslint-plugin-import": "1.4.0 - 2.x",
+    "webpack": "1.11.0 - 5.x"
   },
-  "dependencies": {
-    "contains-path": "^0.1.0",
-    "debug": "^2.6.9",
-    "doctrine": "1.5.0",
-    "eslint-import-resolver-node": "^0.3.2",
-    "eslint-module-utils": "^2.3.0",
-    "has": "^1.0.3",
-    "lodash": "^4.17.11",
-    "minimatch": "^3.0.4",
-    "read-pkg-up": "^2.0.0",
-    "resolve": "^1.9.0"
+  "devDependencies": {
+    "chai": "4.2.0",
+    "coveralls": "3.0.2",
+    "eslint": "5.14.1",
+    "eslint-plugin-import": "2.16.0",
+    "mocha": "6.0.0",
+    "npm-check-updates": "github:przemyslawzalewski/npm-check-updates#e4b2c0214531fc04dbb8ca723df8790c57994027",
+    "nyc": "13.3.0",
+    "webpack": "4.29.5"
   },
   "nyc": {
-    "require": [
-      "babel-register"
-    ],
-    "sourceMap": false,
-    "instrument": false,
-    "include": [
-      "src/",
-      "resolvers/"
+    "exclude": [
+      "test/"
     ]
   }
 }

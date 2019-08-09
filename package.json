@@ -38,10 +38,10 @@
     "find-root": "1.1.0",
     "has": "1.0.3",
     "interpret": "1.2.0",
-    "lodash": "4.17.14",
+    "lodash": "4.17.15",
     "node-libs-browser": "2.2.1",
-    "resolve": "1.11.1",
-    "semver": "6.2.0"
+    "resolve": "1.12.0",
+    "semver": "6.3.0"
   },
   "peerDependencies": {
     "eslint-plugin-import": "*",
@@ -49,13 +49,13 @@
   },
   "devDependencies": {
     "chai": "4.2.0",
-    "coveralls": "3.0.5",
-    "eslint": "6.0.1",
-    "eslint-plugin-import": "2.18.0",
-    "mocha": "6.1.4",
+    "coveralls": "3.0.6",
+    "eslint": "6.1.0",
+    "eslint-plugin-import": "2.18.2",
+    "mocha": "6.2.0",
     "npm-check-updates": "github:przemyslawzalewski/npm-check-updates#770a9c52ac3679e9dc1cbf94ae66a91f472a7ae1",
     "nyc": "14.1.1",
-    "webpack": "4.36.1"
+    "webpack": "4.39.1"
   },
   "nyc": {
     "exclude": [
